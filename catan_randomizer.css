@@ -1,23 +1,12 @@
 html,body{
   margin:0px;
   padding:0px;
-}
-.tile{
-  height:100px;
-  width:100px;
-  margin-right:-21px;
-  margin-bottom:-32px;
+  background-color:#eee;
 }
 .center{
   display:block;
   margin:auto;
   text-align:center;
-}
-#board{
-  height:390px;
-  width:450px;
-  margin:20px auto;
-  cursor: pointer;
 }
 #scores{
   height:200px;
@@ -25,31 +14,65 @@ html,body{
   margin:20px auto;
   text-align:center;
 }
-.spacer_0{
-  display:inline-block;
-  margin-left:84px;
+#board{
+  margin:10px auto 50px auto;
+  cursor: pointer;
 }
-.spacer_3{
+.spacer{
   display:inline-block;
-  margin-left:42px;
-}
-.spacer_7{
-  display:inline-block;
-}
-.spacer_12{
-  display:inline-block;
-  margin-left:42px;
-}
-.spacer_16{
-  display:inline-block;
-  margin-left:84px;
 }
 .green{
   color:green;
 }
 .orange{
-  color:orange;
+  color:#dd8000;
 }
 .red{
   color:red;
+}
+@media screen and (min-width: 481px) {
+    #board{
+      width:440px;
+    }
+    .tile{
+      height:100px;
+      width:100px;
+      margin-right:-21px;
+      margin-bottom:-32px;
+    }
+    .spacer_0{
+      margin-left:84px;
+    }
+    .spacer_3{
+      margin-left:42px;
+    }
+    .spacer_12{
+      margin-left:42px;
+    }
+    .spacer_16{
+      margin-left:84px;
+    }
+}
+@media screen and (max-width: 480px){
+    #board{
+      width:360px;
+    }
+    .tile{
+      height:80px;
+      width:80px;
+      margin-right:-17px;
+      margin-bottom:-27px;
+    }
+    .spacer_0{
+      margin-left:66px;
+    }
+    .spacer_3{
+      margin-left:33px;
+    }
+    .spacer_12{
+      margin-left:33px;
+    }
+    .spacer_16{
+      margin-left:66px;
+    }
 }

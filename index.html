@@ -13,7 +13,7 @@
         <h2 class="center" >Board</h2>
         <div v-on:click="updateTiles()" id="board" title="Click for new board!">
             <template v-for="(tile,index) in tiles">
-                <div v-if="index==0 || index==3 || index==7 || index==12 || index==16" :class="'spacer_' + index"></div>
+                <div v-if="index==0 || index==3 || index==7 || index==12 || index==16" :class="'spacer spacer_' + index"></div>
                 <img :src="'assets/' + tile.Type + '.png'" class="tile" :class="'spot_' + index" :title="tile.Token">
                 <br v-if="index==2 || index==6 || index==11 || index==15">
             </template>
