@@ -14,9 +14,14 @@
         <div v-on:click="updateTiles()" id="board" title="Click for new board!">
             <template v-for="(tile,index) in tiles">
                 <div v-if="index==0 || index==3 || index==7 || index==12 || index==16" :class="'spacer_' + index"></div>
-                <img :src="'assets/' + tile.Type + '.png'" class="tile" :class="'spot_' + index" :title="tile.Type">
+                <img :src="'assets/' + tile.Type + '.png'" class="tile" :class="'spot_' + index" :title="tile.Token">
                 <br v-if="index==2 || index==6 || index==11 || index==15">
             </template>
+        </div>
+        <div id="scores">
+            <p>{{resource_spacing}} Resource Spacing Score</p>
+            <p>{{token_spacing}} Token Spacing Score</p>
+            <p>{{resource_token_spacing}} Resource-Token Spacing Score</p>
         </div>
     </body>
 </html>
