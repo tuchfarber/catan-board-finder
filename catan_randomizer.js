@@ -45,13 +45,22 @@ function buildTiles(){
     })
     return tiles;
 }
-let board;
 
+let board;
 window.onload = function(){
     board = new Vue({
         el: '#board',
         data: {
             tiles: buildTiles()
+        },
+        methods:{
+            updateTiles: function(event){
+                this.tiles = []
+                new_tiles = buildTiles()
+                for(var i=0;i<new_tiles.length;i++){
+                    this.tiles.push(new_tiles[i]);
+                }
+            }
         }
     })
 }

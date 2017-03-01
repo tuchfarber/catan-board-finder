@@ -8,13 +8,16 @@ html,body{
   margin-right:-21px;
   margin-bottom:-32px;
 }
-h2{
-  text-align: center;
+.center{
+  display:block;
+  margin:auto;
+  text-align:center;
 }
 #board{
   height:390px;
   width:450px;
-  margin:auto;
+  margin:20px auto;
+  cursor: pointer;
 }
 .spacer_0{
   display:inline-block;
