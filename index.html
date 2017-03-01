@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
+        <script src="catan_randomizer.js"></script>
+        <link href="catan_randomizer.css" rel="stylesheet"> 
+    </head>
+    <body>
+        <h2>Board</h2>
+        <div id="board">
+            <template v-for="(tile,index) in tiles">
+                <div v-if="index==0 || index==3 || index==7 || index==12 || index==16" :class="'spacer_' + index"></div>
+                <img :src="'assets/' + tile.Type + '.png'" class="tile" :class="'spot_' + index" :title="tile.Type">
+                <br v-if="index==2 || index==6 || index==11 || index==15">
+            </template>
+        </div>
+    </body>
+</html>
