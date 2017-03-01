@@ -19,9 +19,9 @@
             </template>
         </div>
         <div id="scores">
-            <p>{{resource_spacing}} Resource Spacing Score</p>
-            <p>{{token_spacing}} Token Spacing Score</p>
-            <p>{{resource_token_spacing}} Resource-Token Spacing Score</p>
+            <h4 :class="resource_spacing['color']">{{resource_spacing.text}}</h4>
+            <h4 :class="token_spacing.color">{{token_spacing.text}}</h4>
+            <h4 :class="resource_token_spacing.color">{{resource_token_spacing.text}}</h4>
         </div>
     </body>
 </html>

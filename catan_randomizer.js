@@ -19,15 +19,32 @@ window.onload = function(){
     scores = new Vue({
         el: '#scores',
         data: {
-            resource_spacing: 0,
-            token_spacing: 0,
-            resource_token_spacing: 0
+            resource_spacing: {"score":0,"text":"","color":""},
+            token_spacing: {"score":0,"text":"","color":""},
+            resource_token_spacing: {"score":0,"text":"","color":""}
         },
         methods:{
             updateScores: function(){
-                this.resource_spacing = resourceSpacingAll(board.tiles);
-                this.token_spacing = tokenSpacingAll(board.tiles);
-                this.resource_token_spacing = tokenResourceSpacingAll(board.tiles);
+                this.resource_spacing = this.buildScoreObj(resourceSpacingAll(board.tiles));
+                this.token_spacing = this.buildScoreObj(tokenSpacingAll(board.tiles));
+                this.resource_token_spacing = this.buildScoreObj(tokenResourceSpacingAll(board.tiles));
+            },
+            buildScoreObj: function(score){
+                // Score ranges do not overlap, so we can assume type by score
+                let message = "";
+                let color = "";
+                if(score >= 0 && score <= 6){message = "Few resource clusters";color = "green"}
+                else if(score > 6 && score <= 12){message = "Some resource clusters";color = "orange"}
+                else if(score > 12 && score <= 18){message = "Many resource clusters";color = "red"}
+                else if(score > 18 && score <= 25){message = "Even resource probablities";color = "green"}
+                else if(score > 25 && score <= 31){message = "Slightly uneven resource probablities";color = "orange"}
+                else if(score > 31 && score <= 60){message = "Very uneven resource probablities";color = "red"}
+                else if(score > 60 && score <= 101){message = "Few token clusters";color = "green"}
+                else if(score > 101 && score <= 127){message = "Some token clusters";color = "orange"}
+                else if(score > 127 && score <= 160){message = "Many token clusters";color = "red"}
+                else{message = "Score outside bounds"}
+                console.log(score)
+                return {"score":score,"text":message,"color":color}
             }
         }
     })
@@ -73,7 +90,7 @@ function tokenResourceSpacingAll(tiles){
     means.forEach(function(mean){
         result += Math.abs(mean - avg_res_val)
     })
-    return result.toFixed(2);
+    return result.toFixed();
 }
 
 /***********************

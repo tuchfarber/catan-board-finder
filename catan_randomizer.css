@@ -23,6 +23,7 @@ html,body{
   height:200px;
   width:300px;
   margin:20px auto;
+  text-align:center;
 }
 .spacer_0{
   display:inline-block;
@@ -42,4 +43,13 @@ html,body{
 .spacer_16{
   display:inline-block;
   margin-left:84px;
+}
+.green{
+  color:green;
+}
+.orange{
+  color:orange;
+}
+.red{
+  color:red;
 }
