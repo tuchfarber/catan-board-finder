@@ -36,9 +36,9 @@ window.onload = function(){
                 if(score >= 0 && score <= 6){message = "Few resource clusters";color = "green"}
                 else if(score > 6 && score <= 12){message = "Some resource clusters";color = "orange"}
                 else if(score > 12 && score <= 18){message = "Many resource clusters";color = "red"}
-                else if(score > 18 && score <= 25){message = "Even resource probablities";color = "green"}
-                else if(score > 25 && score <= 31){message = "Slightly uneven resource probablities";color = "orange"}
-                else if(score > 31 && score <= 60){message = "Very uneven resource probablities";color = "red"}
+                else if(score > 18 && score <= 25){message = "Even resource probabilities";color = "green"}
+                else if(score > 25 && score <= 31){message = "Slightly uneven resource probabilities";color = "orange"}
+                else if(score > 31 && score <= 60){message = "Very uneven resource probabilities";color = "red"}
                 else if(score > 60 && score <= 101){message = "Few token clusters";color = "green"}
                 else if(score > 101 && score <= 127){message = "Some token clusters";color = "orange"}
                 else if(score > 127 && score <= 160){message = "Many token clusters";color = "red"}
