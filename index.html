@@ -11,11 +11,15 @@
     </head>
     <body>
         <h2 class="center" >Board</h2>
+        <h5 class="center">Click board for new board</h5>
         <div v-on:click="updateTiles()" id="board" title="Click for new board!">
             <template v-for="(tile,index) in tiles">
-                <div v-if="index==0 || index==3 || index==7 || index==12 || index==16" :class="'spacer spacer_' + index"></div>
-                <img :src="'assets/' + tile.Type + '.png'" class="tile" :class="'spot_' + index" :title="tile.Token">
-                <br v-if="index==2 || index==6 || index==11 || index==15">
+                <!--<div v-if="index==0 || index==3 || index==7 || index==12 || index==16" :class="'spacer spacer_' + index"></div>-->
+                <div  class="tile " :class="'spot_' + index + ' ' + tile.Type" :title="tile.Token">
+                    <div class="subtile">{{tile.Token}}</div>
+                </div>
+                <div v-if="index==2 || index==6 || index==11 || index==15" class="linebreak"></div>
+                <!--<img :src="'' +  + '.png'" class="tile" :class="'spot_' + index" :title="tile.Token">-->
             </template>
         </div>
         <div id="scores">
