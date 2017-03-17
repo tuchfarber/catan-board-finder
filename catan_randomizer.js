@@ -1,4 +1,4 @@
-let board;
+let board, scores, filter;
 window.onload = function(){
     board = new Vue({
         el: '#board',
@@ -6,45 +6,90 @@ window.onload = function(){
             tiles: buildTiles()
         },
         methods:{
-            updateTiles: function(event){
+            updateTiles: function(is_filter){
                 this.tiles = []
                 new_tiles = buildTiles()
                 for(var i=0;i<new_tiles.length;i++){
                     this.tiles.push(new_tiles[i]);
                 }
-                scores.updateScores();
+                scores.updateScores(is_filter);
             }
         }
     })
     scores = new Vue({
         el: '#scores',
         data: {
-            resource_spacing: {"score":0,"text":"","color":""},
-            token_spacing: {"score":0,"text":"","color":""},
-            resource_token_spacing: {"score":0,"text":"","color":""}
+            resource_spacing: {"score":0,"text":"","color":"","index":0},
+            token_spacing: {"score":0,"text":"","color":"","index":0},
+            resource_token_spacing: {"score":0,"text":"","color":"","index":0},
+            rs_options:[
+                {"text":"Few resource clusters","color":"green"},
+                {"text":"Some resource clusters","color":"orange"},
+                {"text":"Many resource clusters","color":"red"}
+            ],
+            ts_options:[
+                {"text":"Few token clusters","color":"green"},
+                {"text":"Some token clusters","color":"orange"},
+                {"text":"Many token clusters","color":"red"}
+            ],
+            rts_options:[
+                {"text":"Even resource probabilities","color":"green"},
+                {"text":"Slightly uneven resource probabilities","color":"orange"},
+                {"text":"Very uneven resource probabilities","color":"red"}
+            ],
+            rs_wanted : "",
+            ts_wanted : "",
+            rts_wanted : ""
         },
         methods:{
-            updateScores: function(){
+            updateScores: function(is_filter){
                 this.resource_spacing = this.buildScoreObj(resourceSpacingAll(board.tiles));
                 this.token_spacing = this.buildScoreObj(tokenSpacingAll(board.tiles));
                 this.resource_token_spacing = this.buildScoreObj(tokenResourceSpacingAll(board.tiles));
+                if(!is_filter){
+                    this.rs_wanted =  this.resource_spacing.text;
+                    this.ts_wanted =  this.token_spacing.text;
+                    this.rts_wanted = this.resource_token_spacing.text;
+                }
             },
             buildScoreObj: function(score){
                 // Score ranges do not overlap, so we can assume type by score
-                let message = "";
-                let color = "";
-                if(score >= 0 && score <= 6){message = "Few resource clusters";color = "green"}
-                else if(score > 6 && score <= 12){message = "Some resource clusters";color = "orange"}
-                else if(score > 12 && score <= 18){message = "Many resource clusters";color = "red"}
-                else if(score > 18 && score <= 25){message = "Even resource probabilities";color = "green"}
-                else if(score > 25 && score <= 31){message = "Slightly uneven resource probabilities";color = "orange"}
-                else if(score > 31 && score <= 60){message = "Very uneven resource probabilities";color = "red"}
-                else if(score > 60 && score <= 101){message = "Few token clusters";color = "green"}
-                else if(score > 101 && score <= 127){message = "Some token clusters";color = "orange"}
-                else if(score > 127 && score <= 160){message = "Many token clusters";color = "red"}
+                let options = null;
+                let index = null;
+                if(score>=0 && score <=18){
+                    options = this.rs_options;
+                    if(score >= 0 && score <= 6){index=0}
+                    else if(score > 6 && score <= 12){index=1}
+                    else if(score > 12 && score <= 18){index=2}
+                }
+                else if(score > 18 && score <= 60){
+                    options = this.rts_options;
+                    if(score > 18 && score <= 25){index=0}
+                    else if(score > 25 && score <= 31){index=1}
+                    else if(score > 31 && score <= 60){index=2}
+                }
+                else if(score > 60 && score <= 200){
+                    options = this.ts_options;
+                    if(score > 60 && score <= 101){index=0}
+                    else if(score > 101 && score <= 127){index=1}
+                    else if(score > 127 && score <= 200){index=2}
+                }
+                if(index == null){console.log(score)}
                 else{message = "Score outside bounds"}
-                console.log(score)
-                return {"score":score,"text":message,"color":color}
+                return {"score":score,"text":options[index].text,"color":options[index].color,"index":index}
+            },
+            boardFilter: function(){
+                let count = 0;
+                while(true){
+                    board.updateTiles(true)
+                    count++;
+                    if (
+                        this.resource_spacing.text == this.rs_wanted &&
+                        this.token_spacing.text == this.ts_wanted &&
+                        this.resource_token_spacing.text == this.rts_wanted
+                    ){break}
+                }
+                console.log("Took " + count + " cycles")
             }
         }
     })

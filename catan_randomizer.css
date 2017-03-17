@@ -1,11 +1,14 @@
 html,body{
   margin:0px;
   padding:0px;
-  height:100%;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 .container{
   margin-top:40px;
 }
+
 .center{
   display:block;
   margin:auto;
@@ -62,6 +65,14 @@ html,body{
 .linebreak{
   width:100%;
 }
+.button{
+  margin-top:10px;
+  height:30px;
+  width:140px;
+}
+.selection{
+  width:300px;
+}
 /*
 .tile{
 
@@ -97,6 +108,9 @@ html,body{
 }
 .red{
   color:red;
+}
+.finger:hover{
+  cursor:pointer;
 }
 @media screen{
     .tile{

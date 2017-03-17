@@ -13,20 +13,29 @@
         <div class="container">
             <h2 class="center" >Board</h2>
             <h5 class="center">Click board for new board</h5>
-            <div v-on:click="updateTiles()" id="board" title="Click for new board!">
+            <div v-on:click="updateTiles(false)" id="board" title="Click for new board!">
                 <template v-for="(tile,index) in tiles">
                     <!--<div v-if="index==0 || index==3 || index==7 || index==12 || index==16" :class="'spacer spacer_' + index"></div>-->
                     <div  class="tile " :class="'spot_' + index + ' ' + tile.Type" :title="tile.Token">
-                        <div class="subtile">{{tile.Token}}</div>
+                        <div v-if="tile.Token != 1"class="subtile">{{tile.Token}}</div>
                     </div>
                     <div v-if="index==2 || index==6 || index==11 || index==15" class="linebreak"></div>
                     <!--<img :src="'' +  + '.png'" class="tile" :class="'spot_' + index" :title="tile.Token">-->
                 </template>
             </div>
+            <h5 class="center">Click scores to find boards</h5>
+            <h6 class="center">Warning! Can be resource intensive.</h6>
             <div id="scores">
-                <h4 :class="resource_spacing['color']">{{resource_spacing.text}}</h4>
-                <h4 :class="token_spacing.color">{{token_spacing.text}}</h4>
-                <h4 :class="resource_token_spacing.color">{{resource_token_spacing.text}}</h4>
+                <select :class="resource_spacing['color']" class="center selection" v-model="rs_wanted">
+                    <option v-for="option in rs_options" :class="resource_spacing['color']">{{option.text}}</option>
+                </select>
+                <select :class="token_spacing['color']" class="center selection" v-model="ts_wanted">
+                    <option v-for="option in ts_options" :class="token_spacing['color']">{{option.text}}</option>
+                </select>
+                <select :class="resource_token_spacing['color']" class="center selection" v-model="rts_wanted">
+                    <option v-for="option in rts_options" :class="resource_token_spacing['color']">{{option.text}}</option>
+                </select>
+                <button class="center button" v-on:click="boardFilter()">Find board</button>
             </div>
         </div>
     </body>
