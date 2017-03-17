@@ -20,7 +20,7 @@ html,body{
   text-align:center;
 }
 #board{
-  margin:10px auto 50px auto;
+  margin:10px auto 30px auto;
   cursor: pointer;
   display:flex;
   flex-flow: row wrap;
@@ -73,30 +73,6 @@ html,body{
 .selection{
   width:300px;
 }
-/*
-.tile{
-
-  margin:auto;
-  height:calc(100% / 6);
-  width:calc(100% / 6);
-  margin-right:calc(100% / -30);
-  margin-bottom:calc(100% / -19);
-}
-.spacer_0{
-  margin-left:calc(100% / 4);
-}
-.spacer_3{
-  margin-left:calc(((100% / 4) - (100% / 12)) + ((100% / 6) * .07));
-}
-.spacer_7{
-  margin-left:calc(((100% / 4) - (100% / 6)) + ((100% / 6) * .15));
-}
-.spacer_12{
-  margin-left:calc(((100% / 4) - (100% / 12)) + ((100% / 6) * .07));
-}
-.spacer_16{
-  margin-left:calc(100% / 4);
-}*/
 .spacer{
   display:inline-block;
 }
