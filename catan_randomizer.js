@@ -89,7 +89,7 @@ window.onload = function(){
                         this.resource_token_spacing.text == this.rts_wanted
                     ){break}
                 }
-                console.log("Took " + count + " cycles")
+                alert("Took " + count + " cycles to find board")
             }
         }
     })
