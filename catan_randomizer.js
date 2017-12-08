@@ -23,23 +23,24 @@ window.onload = function(){
             token_spacing: {"score":0,"text":"","color":"","index":0},
             resource_token_spacing: {"score":0,"text":"","color":"","index":0},
             rs_options:[
-                {"text":"Few resource clusters","color":"green"},
-                {"text":"Some resource clusters","color":"orange"},
-                {"text":"Many resource clusters","color":"red"}
+                {"text":"Few","color":"green"},
+                {"text":"Some","color":"orange"},
+                {"text":"Many","color":"red"}
             ],
             ts_options:[
-                {"text":"Few token clusters","color":"green"},
-                {"text":"Some token clusters","color":"orange"},
-                {"text":"Many token clusters","color":"red"}
+                {"text":"Few","color":"green"},
+                {"text":"Some","color":"orange"},
+                {"text":"Many","color":"red"}
             ],
             rts_options:[
-                {"text":"Even resource probabilities","color":"green"},
-                {"text":"Slightly uneven resource probabilities","color":"orange"},
-                {"text":"Very uneven resource probabilities","color":"red"}
+                {"text":"Even","color":"green"},
+                {"text":"Slightly uneven","color":"orange"},
+                {"text":"Very uneven","color":"red"}
             ],
             rs_wanted : "",
             ts_wanted : "",
-            rts_wanted : ""
+            rts_wanted : "",
+            iterations: 0
         },
         methods:{
             updateScores: function(is_filter){
@@ -89,7 +90,11 @@ window.onload = function(){
                         this.resource_token_spacing.text == this.rts_wanted
                     ){break}
                 }
-                alert("Took " + count + " cycles to find board")
+                this.iterations = count;
+            },
+            randomBoard: function(){
+                board.updateTiles(false);
+                this.iterations = 1;
             }
         }
     })
