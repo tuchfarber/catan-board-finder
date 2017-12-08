@@ -5,9 +5,6 @@ html,body{
   -moz-user-select: none;
   -webkit-user-select: none;
 }
-.container{
-  margin-top:40px;
-}
 
 .center{
   display:block;
@@ -21,7 +18,6 @@ html,body{
 }
 #board{
   margin:10px auto 30px auto;
-  cursor: pointer;
   display:flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -68,10 +64,9 @@ html,body{
 .button{
   margin-top:10px;
   height:30px;
-  width:140px;
 }
 .selection{
-  width:300px;
+  width: 100%;
 }
 .spacer{
   display:inline-block;
@@ -85,13 +80,23 @@ html,body{
 .red{
   color:red;
 }
-.finger:hover{
-  cursor:pointer;
+table{
+  margin: auto;
+  text-align: left;
+}
+.label{
+  text-align: right;
+}
+.small{
+  font-size: 0.8em;
 }
 @media screen{
     .tile{
       height:75px;
       width:75px;
+    }
+    .container{
+      margin-top:40px;
     }
 }
 @media screen and (max-width: 1024px){
@@ -99,10 +104,16 @@ html,body{
       height:60px;
       width:60px;
     }
+    .container{
+      margin-top: 10px;
+    }
 }
 @media screen and (max-width: 480px){
     .tile{
       height:40px;
       width:40px;
+    }
+    .container{
+      margin-top: 10px;
     }
 }
