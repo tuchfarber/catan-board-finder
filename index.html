@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Catan Randomizer</title>
         <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
-        <script src="catan_randomizer.js"></script>
-        <link href="catan_randomizer.css" rel="stylesheet"> 
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body>
-        <div class="container">
+        <div id="app">
             <h2 class="center"> Catan Board Finder</h2>
-            <div id="board" title="Click for new board!">
+            <div class="status center" v-if="not_ready">Loading... <br>{{error_msg}}</div>
+            <div id="board">
                 <template v-for="(tile,index) in tiles">
                     <div  class="tile " :class="'spot_' + index + ' ' + tile.Type" :title="tile.Token">
                         <div v-if="tile.Token != 1"class="subtile">{{tile.Token}}</div>
@@ -20,13 +20,14 @@
                     <div v-if="index==2 || index==6 || index==11 || index==15" class="linebreak"></div>
                 </template>
             </div>
+            
             <div id="scores">
                 <table>
                     <tr>
                         <td class="label">Resource clusters: </td>
                         <td>
                             <select class="center selection" v-model="rs_wanted">
-                                <option v-for="option in rs_options">{{option.text}}</option>
+                                <option v-for="option in rs_options">{{option}}</option>
                             </select>
                         </td>
                     </tr>
@@ -34,7 +35,7 @@
                         <td class="label">Token clusters: </td>
                         <td>
                             <select class="center selection" v-model="ts_wanted">
-                                <option v-for="option in ts_options">{{option.text}}</option>
+                                <option v-for="option in ts_options">{{option}}</option>
                             </select>
                         </td>
                     </tr>
@@ -42,17 +43,19 @@
                         <td class="label">Probability of resources: </td>
                         <td>
                             <select class="center selection" v-model="rts_wanted">
-                                <option v-for="option in rts_options">{{option.text}}</option>
+                                <option v-for="option in rts_options">{{option}}</option>
                             </select>
                         </td>
                     </tr>
                 </table>
                 <div class="center">
-                        <button class="button" v-on:click="boardFilter()">Find custom board</button>
-                        <button class="button" v-on:click="randomBoard()">Find random board</button>
+                        <button class="button" v-on:click="getCustomBoard()">Find custom board</button>
+                        <button class="button" v-on:click="getRandomBoard()">Find random board</button>
                 </div>
                 <div class="center small">Took {{iterations}} iteration to find board</div>
             </div>
         </div>
     </body>
+    <script src="catan_randomizer.js"></script>
+    <link href="catan_randomizer.css" rel="stylesheet">
 </html>
