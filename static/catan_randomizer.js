@@ -1,4 +1,4 @@
-let API_URL_BASE = "https://us-central1-catanboardfinderapi.cloudfunctions.net/catanboardfinderapi?"
+let API_URL_BASE = "/api/"
 //resource=1&token=1&probability=1
 
 app = new Vue({
@@ -25,7 +25,7 @@ app = new Vue({
         getCustomBoard: function(){
             this.callAPI(
                 API_URL_BASE
-                + 'resource=' + this.rs_options.indexOf(this.rs_wanted) 
+                + '?resource=' + this.rs_options.indexOf(this.rs_wanted)
                 + '&token=' + this.ts_options.indexOf(this.ts_wanted)
                 + '&probability=' + this.rts_options.indexOf(this.rts_wanted)
             )

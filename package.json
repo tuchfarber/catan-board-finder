@@ -1,0 +1,13 @@
+{
+    "name": "catan_board_finder",
+    "version": "1.0.0",
+    "description": "Generate boards for Settlers of Catan",
+    "author": "Matt Tuchfarber <matt@tuchfarber.com>",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.16.1"
+    }
+  }
