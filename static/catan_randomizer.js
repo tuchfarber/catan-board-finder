@@ -1,4 +1,4 @@
-let API_URL_BASE = "/api/"
+let API_URL_BASE = "api/"
 //resource=1&token=1&probability=1
 
 app = new Vue({
