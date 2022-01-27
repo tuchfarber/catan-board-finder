@@ -57,27 +57,27 @@ html,body{
 }
 
 .grain{
-  background: url("./assets/grain.png") no-repeat center;
+  background: url("assets/grain.png") no-repeat center;
   background-size: contain;
 }
 .brick{
-  background: url("./assets/brick.png") no-repeat center;
+  background: url("assets/brick.png") no-repeat center;
   background-size: contain;
 }
 .desert{
-  background: url("./assets/desert.png") no-repeat center;
+  background: url("assets/desert.png") no-repeat center;
   background-size: contain;
 }
 .lumber{
-  background: url("./assets/lumber.png") no-repeat center;
+  background: url("assets/lumber.png") no-repeat center;
   background-size: contain;
 }
 .ore{
-  background: url("./assets/ore.png") no-repeat center;
+  background: url("assets/ore.png") no-repeat center;
   background-size: contain;
 }
 .wool{
-  background: url("./assets/wool.png") no-repeat center;
+  background: url("assets/wool.png") no-repeat center;
   background-size: contain;
 }
 .linebreak{
