@@ -4,8 +4,8 @@ html,body{
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+  background-color: #eeeeee;
 }
-
 .center{
   display:block;
   margin:auto;
@@ -22,6 +22,28 @@ html,body{
   flex-flow: row wrap;
   justify-content: center;
   width:100%;
+}
+#result {
+  margin-top: 20px;
+}
+#info-modal{
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 100;
+  background-color: #eee;
+  min-height: calc(100vh - 20px);
+  min-width: calc(100vw - 20px);
+  font-size: 14px;
+  padding: 10px;
+}
+#info-modal .modal-content {
+  max-width: 800px;
+  margin: auto;
+}
+.modal-close {
+  float: right;
+  margin-top: -10px;
 }
 .tile{
   display:block;
@@ -71,15 +93,6 @@ html,body{
 .spacer{
   display:inline-block;
 }
-.green{
-  color:green;
-}
-.orange{
-  color:#dd8000;
-}
-.red{
-  color:red;
-}
 table{
   margin: auto;
   text-align: left;
@@ -89,6 +102,9 @@ table{
 }
 .small{
   font-size: 0.8em;
+}
+.icon {
+  height: 18px;
 }
 @media screen{
     .tile{

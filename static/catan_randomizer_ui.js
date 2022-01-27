@@ -11,6 +11,7 @@ app = new Vue({
         rs_wanted : -1,
         ts_wanted : -1,
         rts_wanted : -1,
+        infoOpen: false,
     },
     methods: {
         getRandomBoard: function(){
@@ -31,8 +32,13 @@ app = new Vue({
                 token_spacing_score: this.ts_wanted,
                 resource_probability_score: this.rts_wanted
             } = getBoard(...params));
+        },
+        openInfo(){
+            this.infoOpen = true;
+        },
+        closeInfo(){
+            this.infoOpen = false;
         }
-        
     },
     mounted: function(){
         this.getRandomBoard()
