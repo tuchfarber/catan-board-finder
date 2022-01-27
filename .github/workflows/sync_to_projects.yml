@@ -3,7 +3,7 @@ name: Sync build to projects
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   sync_build:
