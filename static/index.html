@@ -5,13 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Catan Randomizer</title>
-        <script src="lib/vue.min.js"></script>
-        <script src="lib/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     </head>
     <body>
         <div id="app">
             <h2 class="center"> Catan Board Finder</h2>
-            <div class="status center" v-if="not_ready">Loading... <br>{{error_msg}}</div>
             <div id="board">
                 <template v-for="(tile,index) in tiles">
                     <div  class="tile " :class="'spot_' + index + ' ' + tile.Type" :title="tile.Token">
@@ -27,7 +25,7 @@
                         <td class="label">Resource clusters: </td>
                         <td>
                             <select class="center selection" v-model="rs_wanted">
-                                <option v-for="option in rs_options">{{option}}</option>
+                                <option v-for="(option, index) in rs_options" :value="index">{{option}}</option>
                             </select>
                         </td>
                     </tr>
@@ -35,7 +33,7 @@
                         <td class="label">Token clusters: </td>
                         <td>
                             <select class="center selection" v-model="ts_wanted">
-                                <option v-for="option in ts_options">{{option}}</option>
+                                <option v-for="(option, index) in ts_options" :value="index">{{option}}</option>
                             </select>
                         </td>
                     </tr>
@@ -43,7 +41,7 @@
                         <td class="label">Probability of resources: </td>
                         <td>
                             <select class="center selection" v-model="rts_wanted">
-                                <option v-for="option in rts_options">{{option}}</option>
+                                <option v-for="(option, index) in rts_options" :value="index">{{option}}</option>
                             </select>
                         </td>
                     </tr>
@@ -56,6 +54,7 @@
             </div>
         </div>
     </body>
-    <script src="catan_randomizer.js"></script>
+    <script src="catan_randomizer_data.js"></script>
+    <script src="catan_randomizer_ui.js"></script>
     <link href="catan_randomizer.css" rel="stylesheet">
 </html>

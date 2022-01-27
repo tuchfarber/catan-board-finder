@@ -1,36 +1,21 @@
-exports.calculate = function calculate(req, res) {
-    let resource_spacing_level = parseInt(req.query.resource);
-    let token_spacing_level = parseInt(req.query.token);
-    let resource_probability_level = parseInt(req.query.probability);
-
-    if(
-        validParam(resource_spacing_level) &&
-        validParam(token_spacing_level) &&
-        validParam(resource_probability_level)
-    ){
-        let [board, iterations] = buildCustomBoard(resource_spacing_level, token_spacing_level, resource_probability_level)
-        res.status(200).send({
-            'type': 'custom',
-            'board': board,
-            'iterations': iterations,
-            'resource_spacing_score': resource_spacing_level,
-            'token_spacing_score': token_spacing_level,
-            'resource_probability_score': resource_probability_level
-        });
-    }else{
-        let board = buildTiles();
-        let resource_spacing_score = buildScoreObj(resourceSpacingAll(board));
-        let token_spacing_score = buildScoreObj(tokenSpacingAll(board));
-        let resource_probability_score = buildScoreObj(tokenResourceSpacingAll(board));
-        res.status(200).send({
-            'type': 'random',
-            'board': board,
-            'iterations': 1,
-            'resource_spacing_score': resource_spacing_score,
-            'token_spacing_score': token_spacing_score,
-            'resource_probability_score': resource_probability_score
-        });
+const getBoard = (resource_spacing_level, token_spacing_level, resource_probability_level) => {
+    let board, iterations;
+    if (resource_spacing_level == -1 || token_spacing_level == -1 || resource_probability_level == -1) {
+        board = buildTiles();
+        iterations = 1;
+        resource_spacing_level = buildScoreObj(resourceSpacingAll(board));
+        token_spacing_level = buildScoreObj(tokenSpacingAll(board));
+        resource_probability_level = buildScoreObj(tokenResourceSpacingAll(board));
+    } else {
+        [board, iterations] = buildCustomBoard(resource_spacing_level, token_spacing_level, resource_probability_level);
     }
+    return {
+        'board': board,
+        'iterations': iterations,
+        'resource_spacing_score': resource_spacing_level,
+        'token_spacing_score': token_spacing_level,
+        'resource_probability_score': resource_probability_level
+    };
 };
 
 function validParam(param){
