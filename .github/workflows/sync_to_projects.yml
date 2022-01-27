@@ -1,0 +1,30 @@
+name: Sync build to projects
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync_build:
+    name: Sync build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: "./catan-board-finder"
+      - uses: actions/checkout@v2
+        with:
+          repository: "tuchfarber/projects"
+          path: "./projects"
+          ref: "main"
+          token: ${{ secrets.REPO_ACCESS }}
+      - run: |
+         rm -rf ./projects/catan-board-finder/ || true
+         mv ./catan-board-finder/static/ ./projects/catan-board-finder/
+         cd projects
+         git config --global user.email "matt@tuchfarber.com"
+         git config --global user.name "Matt Tuchfarber"
+         git add ./catan-board-finder/
+         git commit -m "chore: release catan-board-finder $GITHUB_SHA"
+         git push
